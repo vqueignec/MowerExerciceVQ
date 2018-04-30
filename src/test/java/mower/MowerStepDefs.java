@@ -25,7 +25,7 @@ public class MowerStepDefs {
     }
 
     @When("^I use Command (.+)$")
-    public void iUseCommandA(String command) throws Throwable {
+    public void iUseCommandA(String command){
         mower1.applyCommand(new MoveCommand(MoveEnum.valueOf(command)));
     }
 
@@ -43,7 +43,7 @@ public class MowerStepDefs {
     }
 
     @Given("^the field (\\d+) (\\d+) with a mower (\\d+) (\\d+) (.+) and a mower (\\d+) (\\d+) (.+)$")
-    public void theFieldWithAMowerxNAndAMowerE(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) throws Throwable {
+    public void theFieldWithAMowerxNAndAMowerE(int fieldX, int fieldY, int m1X, int m1Y, String m1D, int m2X, int m2Y, String m2D) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
