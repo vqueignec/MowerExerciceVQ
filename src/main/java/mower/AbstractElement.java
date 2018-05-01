@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import mower.logic.Command;
+import mower.logic.CommandMachine;
+import mower.logic.exceptions.InvalidTranslationMoveException;
+import mower.logic.exceptions.WrongCommandTypeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +31,24 @@ public abstract class AbstractElement {
         commands.add(command);
     }
 
-    public Optional<Command> getNextCommand() {
+    private Optional<Command> getNextCommand() {
         return commands.stream().filter(c -> !c.isPlayed()).findFirst();
     }
 
     public void applyCommands() {
-
+        Optional<Command> commandToExec = this.getNextCommand();
+        while (commandToExec.isPresent())
+            try {
+                CommandMachine.apply(this, commandToExec.get());
+            } catch (InvalidTranslationMoveException e) {
+                //Do nothing except logging/printing, let the show going on !
+                System.out.println(e.getMessage());
+            } catch (WrongCommandTypeException e) {
+                //Do nothing except logging/printing, let the show going on !
+                System.out.println(e.getMessage());
+            } finally {
+                commandToExec.ifPresent(c -> c.setPlayed(true));
+                commandToExec = this.getNextCommand();
+            }
     }
 }

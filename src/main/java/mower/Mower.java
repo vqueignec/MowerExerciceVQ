@@ -2,6 +2,7 @@ package mower;
 
 import basic.Position;
 import enums.DirectionsEnum;
+import environment.mapCase.AbstractCase;
 import lombok.Builder;
 import lombok.Data;
 import mower.logic.Command;
@@ -20,5 +21,10 @@ public class Mower extends AbstractMovable {
         setPosition(new Position(x, y));
         setDirection(direction);
         this.setSpeed(1);
+    }
+
+    public void actionOnMove(AbstractCase currentCase, AbstractCase nextCase){
+        super.actionOnMove(currentCase, nextCase);
+        nextCase.mowed();
     }
 }

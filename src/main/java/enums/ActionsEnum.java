@@ -4,17 +4,17 @@ package enums;
  * @author - v.queignec
  */
 public enum ActionsEnum {
-    G(true),
-    D(true),
-    A(false);
+    G(ActionTypeEnum.STATIC_MOVE),
+    D(ActionTypeEnum.STATIC_MOVE),
+    A(ActionTypeEnum.MOVE);
 
-    private final boolean staticMove;
+    private final ActionTypeEnum type;
 
-    ActionsEnum(boolean staticMove) {
-        this.staticMove = staticMove;
+    ActionsEnum(ActionTypeEnum type) {
+        this.type = type;
     }
 
-    public boolean isStaticMove() {
-        return staticMove;
+    public ActionTypeEnum getType() {
+        return type;
     }
 }

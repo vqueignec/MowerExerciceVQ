@@ -18,10 +18,16 @@ public abstract class AbstractCase {
     @Builder.Default
     boolean mowed = false;
 
-    public void setOccupied(boolean occupied){
-        this.occupied = occupied;
-        if(isOccupied())
-            this.setAccessible(false);
+    public void onEnter(){
+        this.onEnter();
+    }
+
+    public void onLeave(){
+        this.onLeave();
+    }
+
+    public void mowed(){
+        this.mowed();
     }
 
 }

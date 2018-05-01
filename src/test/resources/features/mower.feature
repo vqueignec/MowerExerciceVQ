@@ -41,11 +41,11 @@ Feature: Mower Behavior
     Then My mower is on 1 3 N
 
   Scenario: Two Mowers with one list of commands each
-    Given the field 5 5 with a mower 1 2 N and a mower 3 3 E
+    Given the field 5 5 with two valid mowers 1 2 N and 3 3 E
     When I use the list of commands GAGAGAGAA and AADAADADDA
     Then My mowers are on 1 3 N and 5 1 E
 
   Scenario: does my mower really mowe ?!
     Given the field 5 5 with only one mower 0 0 N
     When I use one list of commands A
-    Then the field is mower at 0 1
+    Then the field is mowed at 0 1

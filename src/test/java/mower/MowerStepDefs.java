@@ -28,12 +28,13 @@ public class MowerStepDefs {
         try {
             World.addAnElement(getMowerGivenPositionAndDirection(x, y, direction));
         } catch (ThatsMyHomeException e) {
+            //Not possible
             assertFalse(true);
         }
     }
 
     @Then("^My mower is on (\\d+) (\\d+) (.+)$")
-    public void myMowerIsStillOn(int x, int y, String orient){
+    public void myMowerIsOn(int x, int y, String orient){
         AbstractElement ele = World.getElements().get(0);
         assertThat(ele.getPosition().getX(), is(x));
         assertThat(ele.getPosition().getY(), is(y));
@@ -41,35 +42,49 @@ public class MowerStepDefs {
     }
 
     @When("^I use one list of commands (.+)$")
-    public void iUseTheListOfCommands(String commands) throws Throwable {
+    public void iUseTheListOfCommands(String commands){
         AbstractElement ele = World.getElements().get(0);
         addListOfCommandsToTheGivenElement(commands, ele);
         World.play();
     }
-
-    @Given("^the field (\\d+) (\\d+) with a mower (\\d+) (\\d+) (.+) and a mower (\\d+) (\\d+) (.+)$")
-    public void theFieldWithAMowerAndAMower(int fieldX, int fieldY, int m1X, int m1Y, String m1D, int m2X, int m2Y, String m2D) throws Throwable {
+    
+    @Given("^the field (\\d+) (\\d+) with two valid mowers (\\d+) (\\d+) (.+) and (\\d+) (\\d+) (.+)$")
+    public void theFieldWithTwoValidMowers(int fieldX, int fieldY, int m1X, int m1Y, String m1D, int m2X, int m2Y, String m2D){
         initField(fieldX, fieldY);
-        World.addAnElement(getMowerGivenPositionAndDirection(m1X, m1Y, m1D));
-        World.addAnElement(getMowerGivenPositionAndDirection(m2X, m2Y, m2D));
+        try {
+            World.addAnElement(getMowerGivenPositionAndDirection(m1X, m1Y, m1D));
+            World.addAnElement(getMowerGivenPositionAndDirection(m2X, m2Y, m2D));
+        } catch (ThatsMyHomeException e) {
+            assertFalse(true);
+        }
     }
 
     @When("^I use the list of commands (.+) and (.+)$")
-    public void iUseTheListOfCommands(String commands1, String commands2) throws Throwable {
+    public void iUseTheListOfCommands(String commands1, String commands2){
         AbstractElement ele1 = World.getElements().get(0);
         AbstractElement ele2 = World.getElements().get(1);
         addListOfCommandsToTheGivenElement(commands1, ele1);
         addListOfCommandsToTheGivenElement(commands2, ele2);
+        World.play();
     }
 
-    @Then("^the field is mower at (\\d+) (\\d+)$")
-    public void theFieldIsMowerAt(int fieldX, int fieldY) throws Throwable {
+    @Then("^the field is mowed at (\\d+) (\\d+)$")
+    public void theFieldIsMowedAt(int fieldX, int fieldY){
         assertThat(World.getField()[fieldX][fieldY].isMowed(), is(true));
     }
 
     @Then("^My mowers are on (\\d+) (\\d+) (.+) and (\\d+) (\\d+) (.+)$")
-    public void myMowersAreOn(int m1X, int m1Y, String m1D, int m2X, int m2Y, String m2D) throws Throwable {
+    public void myMowersAreOn(int m1X, int m1Y, String m1D, int m2X, int m2Y, String m2D){
+        AbstractElement ele1 = World.getElements().get(0);
+        AbstractElement ele2 = World.getElements().get(1);
 
+        assertThat(ele1.getPosition().getX(), is(m1X));
+        assertThat(ele1.getPosition().getY(), is(m1Y));
+        assertThat(ele1.getDirection(), is(DirectionsEnum.valueOf(m1D)));
+
+        assertThat(ele2.getPosition().getX(), is(m2X));
+        assertThat(ele2.getPosition().getY(), is(m2Y));
+        assertThat(ele2.getDirection(), is(DirectionsEnum.valueOf(m2D)));
     }
 
     private void initField(int fieldX, int fieldY){

@@ -1,5 +1,6 @@
 package environment;
 
+import basic.Position;
 import environment.exceptions.ThatsMyHomeException;
 import environment.mapCase.AbstractCase;
 import environment.mapCase.Grass;
@@ -20,7 +21,7 @@ public class World {
 
     public static void init(int x, int y) {
         //Indexes from 0 to x/y included
-        field = new AbstractCase[x+1][y+1];
+        field = new AbstractCase[x + 1][y + 1];
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
                 //Could randomize the type of case or use an external schema ?
@@ -47,18 +48,22 @@ public class World {
 
     public static void addAnElement(AbstractElement ele) throws ThatsMyHomeException {
         //Checking if the corresponding case is already occupied
-        if(field[ele.getPosition().getX()][ele.getPosition().getY()].isOccupied())
-             throw new ThatsMyHomeException();
+        if (field[ele.getPosition().getX()][ele.getPosition().getY()].isOccupied())
+            throw new ThatsMyHomeException();
         elements.add(ele);
         //The case is then occupied
         field[ele.getPosition().getX()][ele.getPosition().getY()].setOccupied(true);
     }
 
-    public static ArrayList<AbstractElement> getElements(){
+    public static AbstractCase getCase(Position pos){
+        return field[pos.getX()][pos.getY()];
+    }
+
+    public static ArrayList<AbstractElement> getElements() {
         return new ArrayList<>(elements);
     }
 
-    public static void play(){
+    public static void play() {
         elements.stream().forEach(e -> e.applyCommands());
     }
 }
