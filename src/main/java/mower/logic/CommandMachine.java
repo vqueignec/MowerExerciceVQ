@@ -48,7 +48,7 @@ public class CommandMachine {
         }
 
         //old position
-        Position oldPosition = movable.getPosition();
+        Position oldPosition = Position.builder().x(movable.getPosition().getX()).y(movable.getPosition().getY()).build();
         switch (movable.getDirection()) {
             case N:
                 if (movable.getPosition().getY() <= World.getY() - movable.getSpeed() && World.getField()[movable.getPosition().getX()][movable.getPosition().getY() + movable.getSpeed()].isAccessible())

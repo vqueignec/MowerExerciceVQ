@@ -14,12 +14,12 @@ public class Grass extends AbstractCase{
 
     public void onEnter(){
         this.setOccupied(true);
-        this.setAccessible(this.isOccupied());
+        this.setAccessible(!this.isOccupied());
     }
 
     public void onLeave(){
         this.setOccupied(false);
-        this.setAccessible(this.isOccupied());
+        this.setAccessible(!this.isOccupied());
     }
 
     public void mowed(){

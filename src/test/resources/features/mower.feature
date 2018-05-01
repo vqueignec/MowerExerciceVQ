@@ -49,3 +49,11 @@ Feature: Mower Behavior
     Given the field 5 5 with only one mower 0 0 N
     When I use one list of commands A
     Then the field is mowed at 0 1
+
+  Scenario: Two mowers at the same place
+    Given the field 5 5 with two mowers at the same position 1 2 N and 1 2 E
+
+  Scenario: Two Mowers collision
+    Given the field 5 5 with two valid mowers 1 2 N and 1 1 N
+    When I use the list of commands G and A
+    Then My mowers are on 1 2 W and 1 1 N
