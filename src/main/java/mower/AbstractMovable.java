@@ -1,7 +1,7 @@
 package mower;
 
 import lombok.Data;
-import mower.logic.MoveCommand;
+import mower.logic.Command;
 
 /**
  * @author - v.queignec
@@ -10,8 +10,4 @@ import mower.logic.MoveCommand;
 public abstract class AbstractMovable extends AbstractElement{
 
     private int speed;
-
-    public void applyCommand(MoveCommand command){
-
-    }
 }

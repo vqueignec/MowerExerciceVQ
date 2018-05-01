@@ -3,14 +3,14 @@ package enums;
 /**
  * @author - v.queignec
  */
-public enum MoveEnum {
+public enum ActionsEnum {
     G(true),
     D(true),
     A(false);
 
     private final boolean staticMove;
 
-    MoveEnum(boolean staticMove) {
+    ActionsEnum(boolean staticMove) {
         this.staticMove = staticMove;
     }
 

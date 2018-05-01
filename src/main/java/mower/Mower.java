@@ -2,9 +2,12 @@ package mower;
 
 import basic.Position;
 import enums.DirectionsEnum;
+import lombok.Builder;
 import lombok.Data;
-import mower.logic.MoveCommand;
-import mower.logic.MoveCommandMachine;
+import mower.logic.Command;
+import mower.logic.CommandMachine;
+
+import java.util.ArrayList;
 
 /**
  * @author - v.queignec
@@ -12,13 +15,10 @@ import mower.logic.MoveCommandMachine;
 @Data
 public class Mower extends AbstractMovable {
 
+    @Builder
     public Mower(int x, int y, DirectionsEnum direction) {
         setPosition(new Position(x, y));
         setDirection(direction);
         this.setSpeed(1);
-    }
-
-    public void applyCommand(MoveCommand command){
-        MoveCommandMachine.apply(this, command);
     }
 }

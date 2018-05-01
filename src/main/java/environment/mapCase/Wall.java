@@ -1,6 +1,8 @@
 package environment.mapCase;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 /**
  * @author - v.queignec

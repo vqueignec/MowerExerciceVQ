@@ -1,6 +1,6 @@
 package mower.logic;
 
-import enums.MoveEnum;
+import enums.ActionsEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +10,9 @@ import lombok.Data;
  */
 @Data
 @Builder
-@AllArgsConstructor
-public class MoveCommand {
+public class Command {
 
-    private MoveEnum order;
+    private ActionsEnum order;
+    @Builder.Default
+    private boolean played = false;
 }
-
