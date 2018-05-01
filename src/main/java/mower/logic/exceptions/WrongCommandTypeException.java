@@ -1,4 +1,4 @@
-package mower.logic.exception;
+package mower.logic.exceptions;
 
 import mower.AbstractElement;
 import mower.logic.Command;

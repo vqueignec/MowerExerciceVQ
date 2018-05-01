@@ -5,8 +5,8 @@ import enums.ActionsEnum;
 import environment.World;
 import mower.AbstractElement;
 import mower.AbstractMovable;
-import mower.logic.exception.InvalidTranslationMoveException;
-import mower.logic.exception.WrongCommandTypeException;
+import mower.logic.exceptions.InvalidTranslationMoveException;
+import mower.logic.exceptions.WrongCommandTypeException;
 
 /**
  * @author - v.queignec

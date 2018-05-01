@@ -1,4 +1,4 @@
-package mower.logic.exception;
+package mower.logic.exceptions;
 
 /**
  * @author - v.queignec
